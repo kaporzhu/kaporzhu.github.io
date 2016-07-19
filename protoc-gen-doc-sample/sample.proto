@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package sample;
+
+// User model
+message User {
+    uint32 id = 1; // user id
+    string name = 2; // user name
+}
+
+// Get user request
+message GetUserReq {
+    uint32 id = 1; // user id
+}
+
+// Get user response
+message GetUserResp {
+    bool success = 1;
+    Errno errno = 2;
+    enum Errno {
+        UNKNOWN = 0; // default error
+        NOT_FOUND = 1; // user is not found
+    }
+    User user = 3;
+}
+
+// Add user request
+message AddUserReq {
+    string name = 1;
+}
+
+// Add user response
+message AddUserResp {
+    User user = 1;
+}
+
+// User API service
+// @url: /user
+service UserService {
+    // @url: /get
+    // Get user by id
+    rpc GetUser(GetUserReq) returns (GetUserResp);
+    // @url: /add
+    // Add user
+    rpc AddUser(AddUserReq) returns (AddUserResp);
+}
+
