@@ -1,0 +1,8 @@
+<pre>
+    #!bash
+    git clone https://github.com/brimworks/lua-zlib.git
+    cd lua-zlib
+    cmake -DLUA_INCLUDE_DIR=/usr/local/openresty/luajit/include/luajit-2.1 -DLUA_LIBRARIES=/usr/local/openresty/luajit/lib -DUSE_LUAJIT=ON -DUSE_LUA=OFF
+    make && make install
+    cp zlib.so /usr/local/openresty/lualib/zlib.so
+</pre>
